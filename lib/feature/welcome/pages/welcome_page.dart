@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/common/extension/custom_theme_extension.dart';
 import '../../../common/utils/ProjectColors.dart';
 import '../../../common/widgets/custom_elevated_button.dart';
 import '../widgets/language_button.dart';
@@ -22,7 +23,7 @@ class WelcomePage extends StatelessWidget {
                 ),
                 child: Image.asset(
                   'assets/images/circle.png',
-                  color: ProjectColors.greenDark,
+                  color: context.theme.circleImageColor,
                 ),
               ),
             )),
