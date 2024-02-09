@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44786388945",
+    "project_id": "whatsapp-messeneger-8bca4",
+    "storage_bucket": "whatsapp-messeneger-8bca4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44786388945:android:78ab7ff5c06a3bd9f05af0",
+        "android_client_info": {
+          "package_name": "com.example.whatsapp_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4tcvwILI28XklpBvFYuJ7MWDRbMCOadI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

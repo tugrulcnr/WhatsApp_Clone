@@ -13,7 +13,9 @@ class CustomTextField extends StatelessWidget {
     this.prefixText,
     this.onTop,
     this.suffixIcon,
-    this.onChanged,
+    this.onChanged, 
+    this.fontSize, 
+    this.autoFocus,
   });
 
   final TextEditingController? controller;
@@ -25,6 +27,8 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onTop;
   final Widget? suffixIcon;
   final Function(String)? onChanged;
+  final double? fontSize;
+  final bool? autoFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +38,10 @@ class CustomTextField extends StatelessWidget {
       readOnly: readOnly ?? false,
       onChanged: onChanged,
       onTap: onTop,
-      style: TextStyle(color: context.theme.authAppbarTextColor),
+      style: TextStyle(color: context.theme.authAppbarTextColor,fontSize: fontSize),
       textAlign: textAlign ?? TextAlign.center,
+      autofocus: autoFocus ?? false,
+      cursorColor: ProjectColors.greenDark,
       decoration: InputDecoration(
           isDense: true,
           suffix: suffixIcon,

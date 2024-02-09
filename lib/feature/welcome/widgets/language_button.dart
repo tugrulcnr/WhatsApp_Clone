@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/common/extension/custom_theme_extension.dart';
+import 'package:whatsapp_clone/common/widgets/custom_icon_button.dart';
 
 import '../../../common/utils/ProjectColors.dart';
 
@@ -31,23 +32,16 @@ class LanguageButton extends StatelessWidget {
               Row(
                 children: [
                   const SizedBox(width: 20),
-                  IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    splashColor: Colors.transparent,
-                    splashRadius: 22,
-                    iconSize: 22,
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(Icons.close_outlined),
-                    color: ProjectColors.greyDark,
-                  ),
+                  CustomIconButton(
+                      onTop: () => Navigator.of(context).pop(),
+                      icon: Icons.close_outlined),
                   const SizedBox(width: 10),
                   Text(
                     "App Language",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
-                        color: context.theme.authAppbarTextColor
-                        ),
+                        color: context.theme.authAppbarTextColor),
                   )
                 ],
               ),
@@ -56,19 +50,16 @@ class LanguageButton extends StatelessWidget {
                 color: context.theme.greyColor!.withOpacity(0.3),
                 thickness: 0.5,
               ),
-
               RadioListTile(
                 value: true,
                 groupValue: true,
                 onChanged: (value) {},
                 activeColor: ProjectColors.greenDark,
-                title: Text("English",style: TextStyle(color: context.theme.authAppbarTextColor)),
+                title: Text("English",
+                    style: TextStyle(color: context.theme.authAppbarTextColor)),
                 subtitle: Text(
                   "(phone's language)",
-                  style: TextStyle(
-                    color: context.theme.greyColor
-                  ),
-
+                  style: TextStyle(color: context.theme.greyColor),
                 ),
               ),
               RadioListTile(
@@ -76,16 +67,13 @@ class LanguageButton extends StatelessWidget {
                 groupValue: false,
                 onChanged: (value) {},
                 activeColor: ProjectColors.greenDark,
-                title:  Text("Turkish",style: TextStyle(color: context.theme.authAppbarTextColor)),
+                title: Text("Turkish",
+                    style: TextStyle(color: context.theme.authAppbarTextColor)),
                 subtitle: Text(
                   "Türkiye",
-                  style: TextStyle(
-                    color: context.theme.greyColor
-                  ),
-
+                  style: TextStyle(color: context.theme.greyColor),
                 ),
               ),
-              
             ],
           ),
         );

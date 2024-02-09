@@ -1,21 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone/common/extension/custom_theme_extension.dart';
+import 'package:whatsapp_clone/common/helper/show_alert_dialog.dart';
 import 'package:whatsapp_clone/common/utils/ProjectColors.dart';
 import 'package:whatsapp_clone/common/widgets/custom_elevated_button.dart';
+import 'package:whatsapp_clone/feature/auth/controller/auth_controller.dart';
+import '../../../common/routes/routes.dart';
+import '../../../common/widgets/custom_icon_button.dart';
 import '../widgets/custom_text_field.dart';
 import 'package:country_picker/country_picker.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   late TextEditingController countryNameController;
   late TextEditingController countryCodeController;
   late TextEditingController phoneNumberController;
+
+  sendCodeToPhone() {
+    final phoneNumber = phoneNumberController.text;
+    final countryName = countryNameController.text;
+    final countryCode = countryCodeController.text;
+
+    if (phoneNumber.isEmpty) {
+      return showCustomAlertDialog(
+          context: context, message: "Please enter a phone number");
+    } else if (phoneNumber.length < 9) {
+      return showCustomAlertDialog(
+          context: context,
+          message:
+              "The phone number you entered is too short for the country: $countryName. \n\nInclude your area code if you haven't");
+    } else if (phoneNumber.length > 10) {
+      return showCustomAlertDialog(
+          context: context,
+          message:
+              "The phone number you entered is too long for the country: $countryName");
+    }
+
+    // request a verification code
+    ref.read(authControllerProvider).sendSmsCode(
+          context: context,
+          phoneNumber: '+$countryCode$phoneNumber',
+        );
+
+  }
 
   showCountryCodePicker() {
     return showCountryPicker(
@@ -43,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       onSelect: (country) {
         countryNameController.text = country.name;
-        countryCodeController.text = country.countryCode;
+        countryCodeController.text = country.phoneCode;
       },
     );
   }
@@ -76,17 +109,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {},
-            splashColor: Colors.transparent,
-            splashRadius: 22,
-            iconSize: 22,
-            padding: EdgeInsets.zero,
-            icon: Icon(
-              Icons.more_vert,
-              color: context.theme.greyColor,
-            ),
-          )
+          CustomIconButton(onTop: () {}, icon: Icons.more_vert),
         ],
       ),
       body: Column(
@@ -156,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomElevatedButton(
-        onPressed: () {},
+        onPressed: sendCodeToPhone,
         text: 'NEXT',
         buttonWidth: 90,
       ),
