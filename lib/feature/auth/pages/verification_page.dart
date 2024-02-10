@@ -6,8 +6,12 @@ import 'package:whatsapp_clone/feature/auth/controller/auth_controller.dart';
 import 'package:whatsapp_clone/feature/auth/widgets/custom_text_field.dart';
 
 class VerificationPage extends ConsumerWidget {
-  const VerificationPage(
-      {super.key, required this.smsCodeId, required this.phoneNumber});
+  const VerificationPage({
+    super.key,
+    required this.smsCodeId,
+    required this.phoneNumber,
+  });
+  
   final String smsCodeId;
   final String phoneNumber;
 

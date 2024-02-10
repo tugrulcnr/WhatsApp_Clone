@@ -27,7 +27,6 @@ class AuthController {
       smsCode: smsCode,
       mounted: mounted,
     );
-    
   }
 
   void sendSmsCode({

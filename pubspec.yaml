@@ -17,6 +17,8 @@ dependencies:
   firebase_storage: ^11.6.5
   cloud_firestore: ^4.15.4
   flutter_riverpod: ^2.4.10-dev.9
+  image_picker: ^0.8.5+3
+  photo_manager: ^3.0.0-dev.2
 
 
 flutter_native_splash:
